@@ -1,0 +1,6 @@
+[
+{ "keys": ["ctrl+alt+m"], "command": "toggle_menu" },
+{ "keys": ["ctrl+shift+t"], "command": "delete_trailing_spaces" },
+{ "keys": ["ctrl+alt+l"], "command": "alignment" },
+{ "keys": ["ctrl+alt+w"], "command": "tidy_tabs" }
+]

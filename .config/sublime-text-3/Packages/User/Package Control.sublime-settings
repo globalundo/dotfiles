@@ -1,0 +1,33 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"All Autocomplete",
+		"BracketHighlighter",
+		"EncodingHelper",
+		"FileDiffs",
+		"Git",
+		"GitGutter",
+		"Hide Menu",
+		"InsertDate",
+		"Material Theme",
+		"Package Control",
+		"PostgreSQL Syntax Highlighting",
+		"Puppet",
+		"Revert All Files",
+		"SideBarEnhancements",
+		"SortBy",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-contrib-puppet",
+		"SublimeLinter-contrib-puppet-lint",
+		"SublimeLinter-pep8",
+		"Theme - Soda",
+		"TidyTabs",
+		"TrailingSpaces"
+	]
+}
