@@ -5,6 +5,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# PATH
+export PATH=$PATH:~/bin
+export XDG_CONFIG_HOME=~/.config
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -71,7 +75,8 @@ if [[ $TERM = *-256color ]]; then
 fi
 
 # Default editor
-export EDITOR='/usr/bin/vim'
+[[ -z $DISPLAY ]] && EDITOR='/usr/bin/subl3' || EDITOR='/usr/bin/vim'
+export EDITOR=$EDITOR
 
 # If running locally
 if [ -z "$SSH_CONNECTION" ]; then

@@ -3,8 +3,7 @@
 tmux_domain=''
 tmux_role=''
 
-if type facter >/dev/null; then
-    domain=$(facter domain 2>/dev/null)
+    domain=$(hostname -d 2>/dev/null)
 
     case $domain in
         *.rsp.*)
@@ -22,17 +21,18 @@ if type facter >/dev/null; then
             ;;
     esac
 
+if type facter >/dev/null; then
     role=$(facter enc_role 2>/dev/null)
 
     case $role in
         '')
-            tmux_role='#[fg=colour233,bg=colour245,bold] no role'
+            tmux_role='#[fg=colour233,bg=colour245,bold] no role '
             ;;
         *)
-            tmux_role="#[fg=colour233,bg=colour245,bold] ${role}"
+            tmux_role="#[fg=colour233,bg=colour245,bold] ${role} "
             ;;
     esac
 
 fi
 
-echo "${tmux_domain} ${tmux_role} "
+echo "${tmux_domain} ${tmux_role}"

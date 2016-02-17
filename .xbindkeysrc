@@ -1,0 +1,26 @@
+"wmctrl -xa chromium || chromium"
+Mod4 + B
+
+"wmctrl -xa deadbeef || deadbeef"
+Mod4 + D
+
+"wmctrl -xa pavucontrol || pavucontrol"
+Mod4 + A
+
+"wmctrl -xa pcmanfm || pcmanfm"
+Mod4 + P
+
+"wmctrl -xa skype || skype"
+Mod4 + C
+
+"wmctrl -xa subl3 || subl3"
+Mod4 + S
+
+"wmctrl -c :ACTIVE:"
+Mod4 + W
+
+"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
+Mod4 + M
+
+"xdotool key --clearmodifiers ctrl+a"
+m:0x0 + c:66 + Release
