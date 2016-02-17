@@ -128,5 +128,6 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; h
 # Gpodder default data dir
 #export GPODDER_DOWNLOAD_DIR='/data/globalundo/Podcasts'
 
-[[ -f '~/.bash_aliases' ]] && . ~/.bash_aliases
-[[ -f '~/.bash_custom' ]] && . ~/.bash_custom
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+[[ -f ~/.bash_custom ]] && . ~/.bash_custom
+true
