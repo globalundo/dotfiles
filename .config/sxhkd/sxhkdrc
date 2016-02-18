@@ -1,0 +1,42 @@
+super + q
+    lock
+
+super + Return
+    urxvt
+
+super + b
+    wmctrl -xa chromium || chromium
+
+super + d
+    wmctrl -xa deadbeef || deadbeef
+
+super + a
+    wmctrl -xa pavucontrol || pavucontrol
+
+super + p
+    wmctrl -xa pcmanfm || pcmanfm
+
+super + c
+    wmctrl -xa skype || skype
+
+super + s
+    wmctrl -xa subl || subl
+
+super + w
+    wmctrl -c :ACTIVE:
+
+super + m
+    wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz; wmctrl -r :ACTIVE: -b toggle,above
+
+super + f
+    wmctrl -r :ACTIVE: -b toggle,fullscreen
+
+super + r
+    rofi -show run -columns 4
+
+shift+super + Return
+    rofi -show window
+
+super + o
+    window_sticky_corner.sh 30
+

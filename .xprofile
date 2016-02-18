@@ -9,7 +9,7 @@ run_once unclutter
 # https://github.com/qnikst/kbdd
 run_once kbdd
 
-run_once xbindkeys
+run_once sxhkd
 run_once nm-applet
 run_once bluetooth-applet
 run_once easystroke
