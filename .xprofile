@@ -1,0 +1,18 @@
+#!/bin/bash
+
+run_once() {
+    pgrep -u $USER -x $1 >/dev/null || $@ &
+}
+# http://linuxappfinder.com/package/unclutter
+run_once unclutter
+
+# https://github.com/qnikst/kbdd
+run_once kbdd
+
+run_once xbindkeys
+run_once nm-applet
+run_once bluetooth-applet
+run_once easystroke
+run_once pcmanfm -d
+run_once nagstamon ~/bin/nagstamon/
+setxkbmap -layout 'us,ru' -option 'grp:alt_space_toggle,caps:none,compose:ralft:both_capslockt'

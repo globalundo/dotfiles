@@ -24,3 +24,6 @@ Mod4 + M
 
 "xdotool key --clearmodifiers ctrl+a"
 m:0x0 + c:66 + Release
+
+"rofi -show run -columns 4"
+Mod4 + R

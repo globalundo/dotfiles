@@ -9,6 +9,7 @@ alias l="ls -l"
 alias svim="sudo -E vim"
 alias g='git'
 alias s='/usr/bin/subl3'
+alias sn='/usr/bin/subl3 -n'
 alias sfab='fab --skip-bad-hosts --hide=status,running'
 alias vpnup='nmcli con up id globalundo.com'
 alias vpndown='nmcli con down id globalundo.com'

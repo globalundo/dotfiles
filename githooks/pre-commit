@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Binaries needed: puppet, puppet-lint, parallel
+#
+set -e
+
+cpu_cores=`grep processor /proc/cpuinfo | wc -l`
+run_check() {
+   git diff --diff-filter=ACMRTUXB --name-only --cached | grep -E "$1" | parallel -j$cpu_cores \
+          ${@:2}
+}
+
+
+echo "### Checking puppet syntax, for science! ###"
+run_check '\.pp$' puppet-lint --no-empty_string_assignment-check --fail-on-warnings --with-filename
+
+echo "### Checking if puppet manifests are valid ###"
+run_check '\.pp$' puppet parser validate
+
+echo "### Sorting hiera yaml files ###"
+run_check '\.yaml$' ./hiera/edit_hiera_yaml_data.rb
+
+echo "### Checking if hiera yaml files are valid ###"
+run_check '\.yaml$' ruby -e "\"require 'yaml'; YAML.load_file(ARGV[0])\""
