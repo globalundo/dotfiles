@@ -52,6 +52,8 @@ URxvt.underlineURLs:        true
 URxvt.url-select.launcher:  sensible-browser
 URxvt.url-select.underline: true
 URxvt.clipboard.autocopy:   false
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 ! URxvt.keysym.Mod4-u:           perl:url-select:select_next
 ! URxvt.keysym.Mod4-Escape:      perl:keyboard-select:activate
 

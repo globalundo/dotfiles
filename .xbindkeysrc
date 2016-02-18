@@ -1,6 +1,9 @@
 "lock"
 Mod4 + Q
 
+"urxvt"
+Mod4 + Return
+
 "wmctrl -xa chromium || chromium"
 Mod4 + B
 
@@ -22,11 +25,17 @@ Mod4 + S
 "wmctrl -c :ACTIVE:"
 Mod4 + W
 
-"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
+"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz; wmctrl -r :ACTIVE: -b toggle,above"
 Mod4 + M
+
+"wmctrl -r :ACTIVE: -b toggle,fullscreen"
+Mod4 + F
 
 "rofi -show run -columns 4"
 Mod4 + R
 
 "rofi -show window"
 Shift+Mod4 + Return
+
+"window_sticky_corner.sh 30"
+Mod4 + O
