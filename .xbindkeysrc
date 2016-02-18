@@ -1,3 +1,6 @@
+"lock"
+Mod4 + Q
+
 "wmctrl -xa chromium || chromium"
 Mod4 + B
 
@@ -13,7 +16,7 @@ Mod4 + P
 "wmctrl -xa skype || skype"
 Mod4 + C
 
-"wmctrl -xa subl3 || subl3"
+"wmctrl -xa subl || subl"
 Mod4 + S
 
 "wmctrl -c :ACTIVE:"
@@ -22,8 +25,8 @@ Mod4 + W
 "wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
 Mod4 + M
 
-"xdotool key --clearmodifiers ctrl+a"
-m:0x0 + c:66 + Release
-
 "rofi -show run -columns 4"
 Mod4 + R
+
+"rofi -show window"
+Shift+Mod4 + Return
