@@ -31,6 +31,7 @@ function whatthediff {
 dotfiles_send() {
     if [ ! -z "$1" ]; then
         rsync -va ~/.vimrc ~/.bashrc ~/.bash_aliases ~/.tmux.conf ~/.vim --exclude '.vim/bundle/YouCompleteMe' $1:
+        rsync -va ~/bin/tmux_*.sh $1:~/bin/
     fi
 }
 

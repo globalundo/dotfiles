@@ -1,6 +1,6 @@
 #/bin/sh
-
-IMAGE='/tmp/screen_locked.png'
+IMAGE="$(mktemp -q).png"
 scrot $IMAGE
-mogrify -scale 10% -scale 1000% $IMAGE
-i3lock -i /tmp/screen_locked.png
+convert $IMAGE -scale 10% -scale 1000% $IMAGE
+i3lock -i $IMAGE
+rm $IMAGE
