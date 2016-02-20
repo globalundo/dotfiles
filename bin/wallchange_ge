@@ -1,0 +1,2 @@
+#!/bin/sh
+shuf -i1000-3000 | while read i; do wget -qO - https://earthview.withgoogle.com/download/${i}.jpg && break; done | feh --bg-fill -

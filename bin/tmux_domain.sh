@@ -22,4 +22,4 @@ case $domain in
         ;;
 esac
 
-echo $tmux_domain
+echo "$tmux_domain "
