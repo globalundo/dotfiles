@@ -1,1 +1,1 @@
-echo 'require("awful");awful.client.floating.toggle();' | awesome-client
+echo 'require("awful").client.floating.toggle();' | awesome-client
