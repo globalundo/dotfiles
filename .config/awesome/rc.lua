@@ -27,7 +27,7 @@ local lain      = require("lain")
 -- require("lua-table-persistence/persistence")
 -- }}}
 
-beautiful.border_width = 6
+beautiful.border_width = 8
 
 naughty.config.presets.normal.opacity = 0.9
 naughty.config.presets.low.opacity = 0.9
@@ -157,9 +157,9 @@ lain.layout.termfair.ncol = 1
 --     tags = persistence.load(storage_tags)
 -- else
   tags = {
-     names = { "web", "term", "more terms", "messaging", "X", "X", "X", "X", "X", "X", "X", "X" },
-  --   names = { "🌎", "", "", "", "⌨", "🎬", "", "" },
-     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+     -- names = { "web", "term", "more terms", "messaging", "X", "X", "X", "X", "X", "X", "X", "X" },
+    names = { "🌎", "", "", "", "⌨", "🎬", "", "", ""},
+     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
   }
 
 
