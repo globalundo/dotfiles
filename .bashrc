@@ -17,55 +17,55 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     fi
 
 function nonzero_return() {
-	RETVAL=$?
-	[ $RETVAL -ne 0 ] && echo -e "\e[38;5;160m[$RETVAL]\e[m "
+    RETVAL=$?
+    [ $RETVAL -ne 0 ] && echo -e "\e[38;5;160m[$RETVAL]\e[m "
 }
 
 # get current branch in git repo
 function parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
-		echo -e "\e[38;5;136m[${BRANCH}${STAT}]\e[m "
-	else
-		echo ""
-	fi
+    BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+    if [ ! "${BRANCH}" == "" ]
+    then
+        STAT=`parse_git_dirty`
+        echo -e "\e[38;5;136m[${BRANCH}${STAT}]\e[m "
+    else
+        echo ""
+    fi
 }
 
 # get current status of git repo
 function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
-	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
-	fi
-	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
-	fi
-	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
-	fi
-	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
-	fi
-	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
-	fi
-	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
-	fi
-	if [ ! "${bits}" == "" ]; then
-		echo " ${bits}"
-	else
-		echo ""
-	fi
+    status=`git status 2>&1 | tee`
+    dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+    untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+    ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+    newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+    renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+    deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+    bits=''
+    if [ "${renamed}" == "0" ]; then
+        bits=">${bits}"
+    fi
+    if [ "${ahead}" == "0" ]; then
+        bits="*${bits}"
+    fi
+    if [ "${newfile}" == "0" ]; then
+        bits="+${bits}"
+    fi
+    if [ "${untracked}" == "0" ]; then
+        bits="?${bits}"
+    fi
+    if [ "${deleted}" == "0" ]; then
+        bits="x${bits}"
+    fi
+    if [ "${dirty}" == "0" ]; then
+        bits="!${bits}"
+    fi
+    if [ ! "${bits}" == "" ]; then
+        echo " ${bits}"
+    else
+        echo ""
+    fi
 }
 
 # Colors
@@ -81,24 +81,27 @@ export EDITOR=$EDITOR
 # If running locally
 if [ -z "$SSH_CONNECTION" ]; then
 
-	# SSH-AGENT
-	export SSH_AGENT_PID=$(pidof ssh-agent)
-	export SSH_AUTH_SOCK=~/.ssh-socket
-	if [[ -z $SSH_AGENT_PID ]]; then
-	    rm -f ~/.ssh-socket
-	    ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
-	    export SSH_AGENT_PID=$!
-	fi
+    # SSH-AGENT
+    export SSH_AGENT_PID=$(pidof ssh-agent)
+    export SSH_AUTH_SOCK=~/.ssh-socket
+    if [[ -z $SSH_AGENT_PID ]]; then
+        rm -f ~/.ssh-socket
+        ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
+        export SSH_AGENT_PID=$!
+    fi
 
-	# Automatically parse and add ssh key from ~/.ssh/config
-	alias ssh='/usr/local/bin/ssh_add_hook.py';
+    # Timeout
+    export TMOUT=600
+
+    # Automatically parse and add ssh key from ~/.ssh/config
+    alias ssh='/usr/local/bin/ssh_add_hook.py';
 
 else
-	if [ 'type tmux' ]; then
-		if [[ -z $TMUX ]]; then
-			tmux attach -d || tmux
-		fi
-	fi
+    if [ 'type tmux' ]; then
+        if [[ -z $TMUX ]]; then
+            tmux attach -d || tmux
+        fi
+    fi
 fi
 
 # History
