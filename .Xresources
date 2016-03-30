@@ -21,7 +21,7 @@ URxvt.transparent:    false
 URxvt.fading:         0
 URxvt.fadeColor:      #002b36
 URxvt.loginShell:     false
-URxvt.internalBorder: 3
+URxvt.internalBorder: 4
 URxvt*borderLess:     false
 ! URxvt.urgentOnBell:         true
 ! URxvt.visualBell:           true
@@ -35,7 +35,7 @@ URxvt.allow_bold:       false
 ! URxvt.font:             -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1
 
 URxvt.iso14755:         false
-URxvt.cutchars:         BACKSLASH '"'&()*,;<=>?@[]^{|}
+URxvt.cutchars:         BACKSLASH '"'&()*,:;<=>#?@[]^{|}
 URxvt.tripleclickwords: true
 URxvt.lineSpace:        0
 URxvt*letterSpace:      -1
@@ -47,15 +47,22 @@ URxvt.saveLines:   4095
 
 ! Perl extensions
 ! URxvt.perl-lib:             /usr/lib/urxvt/perl/
-URxvt.perl-ext-common:      default,clipboard,keyboard-select,url-select
+URxvt.perl-ext-common:      default,selection-autotransform,clipboard,matcher
 URxvt.underlineURLs:        true
-URxvt.url-select.launcher:  sensible-browser
-URxvt.url-select.underline: true
+URxvt.url-launcher:       sensible-browser
 URxvt.clipboard.autocopy:   false
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 ! URxvt.keysym.Mod4-u:           perl:url-select:select_next
 ! URxvt.keysym.Mod4-Escape:      perl:keyboard-select:activate
+URxvt.selection-autotransform.0: s# +$##gm
+URxvt.matcher.rend.0: Uline fg5
+URxvt.matcher.button:     1
+! URxvt.matcher.pattern.1:  \\S?([a-zA-Z0-9-_\\.]+\.bonial\.lan)
+! URxvt.matcher.rend.1: Uline fg6
+! URxvt.matcher.launcher.1: urxvt --hold -e 'bash -c "echo $1"'
+! URxvt.matcher.launcher.1: urxvt --hold -title $1 -e "$SHELL"
+
 
 ! Cursor
 URxvt.cursorBlink:          true
