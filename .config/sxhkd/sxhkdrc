@@ -41,8 +41,8 @@ shift+super + Return
 super + o
     window_sticky_corner.sh 30
 
-super + {1-9}
-    wmctrl -s {0-8}
+#super + {1-9}
+#    wmctrl -s {0-8}
 
 super + shift + {1-9}
     W={0-8}; \

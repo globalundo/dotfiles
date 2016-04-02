@@ -47,12 +47,16 @@ URxvt.saveLines:   4095
 
 ! Perl extensions
 ! URxvt.perl-lib:             /usr/lib/urxvt/perl/
-URxvt.perl-ext-common:      default,selection-autotransform,clipboard,matcher
+URxvt.perl-ext-common:      default,selection-autotransform,matcher,keyboard-select
 URxvt.underlineURLs:        true
 URxvt.url-launcher:       sensible-browser
-URxvt.clipboard.autocopy:   false
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+! URxvt.keyboard-select.to_clipboard: true
+URxvt.selection-autotransform.quiet: true
+URxvt.selection-autotransform.autocopy: true
+URxvt.clipboard.autocopy:   true
+URxvt.keysym.Shift-Control-C: clipboard:copy
+URxvt.keysym.Shift-Control-V: clipboard:paste
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
 ! URxvt.keysym.Mod4-u:           perl:url-select:select_next
 ! URxvt.keysym.Mod4-Escape:      perl:keyboard-select:activate
 URxvt.selection-autotransform.0: s# +$##gm
