@@ -1,0 +1,21 @@
+$include /etc/inputrc
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+set completion-ignore-case on
+#set completion-prefix-display-length 2
+
+
+set echo-control-characters off
+
+set show-all-if-ambiguous on
+
+#TAB: menu-complete
+#"\e[Z": menu-complete-backward
+
+set colored-stats on
+set mark-directories on
+
+set skip-completed-text on
+
+set page-completions off
+set completion-query-items 0
