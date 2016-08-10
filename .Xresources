@@ -1,4 +1,6 @@
 
+#include ".Xresources.d/urxvt"
+
 !-------------------------------------------------------------------------------
 ! Xft settings
 !-------------------------------------------------------------------------------
@@ -10,72 +12,6 @@ Xft.hinting:   true
 Xft.hintstyle: hintslight
 Xft.autohint:  0
 Xft.lcdfilter: lcddefault
-
-!-------------------------------------------------------------------------------
-! URxvt settings
-!-------------------------------------------------------------------------------
-
-URxvt.depth:          32
-URxvt.geometry:       90x30
-URxvt.transparent:    false
-URxvt.fading:         0
-URxvt.fadeColor:      #002b36
-URxvt.loginShell:     false
-URxvt.internalBorder: 4
-URxvt*borderLess:     false
-! URxvt.urgentOnBell:         true
-! URxvt.visualBell:           true
-
-URxvt*iconFile:             /usr/share/icons/gnome/32x32/apps/terminal.png
-
-
-! Fonts
-URxvt*font:             xft:Dejavu Sans Mono:size=12:antialias=false
-URxvt.allow_bold:       false
-! URxvt.font:             -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1
-
-URxvt.iso14755:         false
-URxvt.cutchars:         BACKSLASH '"'&()*,:;<=>#?@[]^{|}
-URxvt.tripleclickwords: true
-URxvt.lineSpace:        0
-URxvt*letterSpace:      -1
-
-! Scrollbar
-URxvt.scrollStyle: rxvt
-URxvt.scrollBar:   false
-URxvt.saveLines:   4095
-
-! Perl extensions
-! URxvt.perl-lib:             /usr/lib/urxvt/perl/
-URxvt.perl-ext-common:      default,selection-autotransform,matcher,keyboard-select
-URxvt.underlineURLs:        true
-URxvt.url-launcher:       sensible-browser
-! URxvt.keyboard-select.to_clipboard: true
-URxvt.selection-autotransform.quiet: true
-URxvt.selection-autotransform.autocopy: true
-URxvt.clipboard.autocopy:   true
-URxvt.keysym.Shift-Control-C: clipboard:copy
-URxvt.keysym.Shift-Control-V: clipboard:paste
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-! URxvt.keysym.Mod4-u:           perl:url-select:select_next
-! URxvt.keysym.Mod4-Escape:      perl:keyboard-select:activate
-URxvt.selection-autotransform.0: s# +$##gm
-URxvt.matcher.rend.0: Uline fg5
-URxvt.matcher.button:     1
-! URxvt.matcher.pattern.1:  \\S?([a-zA-Z0-9-_\\.]+\.bonial\.lan)
-! URxvt.matcher.rend.1: Uline fg6
-! URxvt.matcher.launcher.1: urxvt --hold -e 'bash -c "echo $1"'
-! URxvt.matcher.launcher.1: urxvt --hold -title $1 -e "$SHELL"
-
-
-! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
-
-! Pointer
-URxvt.pointerBlank:         true
-
 
 !-------------------------------------------------------------------------------
 ! Rofi settings
