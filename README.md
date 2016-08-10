@@ -1,7 +1,18 @@
 ![tmux logo](https://tmux.github.io/logo.png)
 
-### Install (requires tmux>=2.1):
+### Files:
+- .tmux.conf
+- .tmux.20.conf
+- .tmux.21.conf
+- bin/tmux_puppet.sh
+- bin/tmux_domain.sh
+
+### Install
+Copy files to your home folder:
 ```find . -type f -name '*tmux*' | xargs -I % cp --parents % ~```
+
+Set CapsLock as a modifier key in tmux:
+```xmodmap -e 'keycode 0x42 = F10 >> ~/.xprofile && ~/.xprofile'```
 
 # [Compton](https://github.com/chjj/compton)
 # [xbindkeys](http://git.savannah.gnu.org/cgit/xbindkeys.git/)
