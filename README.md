@@ -13,7 +13,7 @@ Copy files to your home folder:
 
 ### Hotkeys
 Set CapsLock as a modifier key in tmux:
-```xmodmap -e 'keycode 0x42 = F10 >> ~/.xprofile && ~/.xprofile'```
+```xmodmap -e 'keycode 0x42 = F10' && echo "xmodmap -e 'keycode 0x42 = F10'" >> ~/.xprofile```
 
 [Hotkeys on actual keyboard](https://globalundo.github.io/ShortcutMapper/#tmux)
 

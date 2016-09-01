@@ -12,6 +12,11 @@
 		"Markdown",
 		"Vintage"
 	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
 	"line_padding_bottom": 2,
 	"line_padding_top": 2,
 	"material_theme_tree_headings": true,

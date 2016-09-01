@@ -3,6 +3,9 @@
 run_once() {
     pgrep -u $USER -x $1 >/dev/null || $@ &
 }
+
+run_once compton
+
 # http://linuxappfinder.com/package/unclutter
 run_once unclutter
 
@@ -15,4 +18,5 @@ run_once bluetooth-applet
 run_once easystroke
 run_once pcmanfm -d
 run_once nagstamon ~/bin/nagstamon/
-setxkbmap -layout 'us,ru' -option 'grp:alt_space_toggle,caps:none,compose:ralft:both_capslockt'
+setxkbmap -layout 'us,ru' -option 'grp:alt_space_toggle,caps:none,compose:ralft:both_capslockt,ctrl:nocaps'
+xmodmap -e 'keycode 0x42 = F10'

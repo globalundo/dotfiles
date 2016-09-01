@@ -20,7 +20,7 @@ Xft.lcdfilter: lcddefault
 rofi.terminal:     urxvt
 rofi.width:        60%
 rofi.sidebar-mode: false
-rofi.fuzzy:        true
+rofi.fuzzy:        false
 
 !-------------------------------------------------------------------------------
 ! Color settings

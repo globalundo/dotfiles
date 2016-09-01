@@ -4,6 +4,7 @@ alias svim="sudo -E vim"
 alias g='git'
 alias s='/usr/bin/subl3'
 alias sfab='fab --skip-bad-hosts --hide=status,running'
+alias pfab='fab --skip-bad-hosts --hide=status,running --set=output_prefix=""'
 alias vpnup='nmcli con up id globalundo.com'
 alias vpndown='nmcli con down id globalundo.com'
 alias takeover='tmux detach -a'
@@ -23,15 +24,10 @@ function whatthediff {
 # Populate remote server with dotfiles
 dotfiles_send() {
     if [ ! -z "$1" ]; then
-        rsync -va ~/.vimrc ~/.bashrc ~/.bash_aliases ~/.tmux.conf ~/.vim --exclude '.vim/bundle/YouCompleteMe' $1:
+        rsync -va ~/.vimrc ~/.bashrc ~/.bash_aliases ~/.tmux.conf ~/.tmux.??.conf ~/.vim --exclude '.vim/bundle/YouCompleteMe' $1:
         rsync -va ~/.config/liquidprompt* $1:~/.config/
         rsync -va ~/bin/tmux_*.sh ~/bin/liquidprompt  $1:~/bin/
     fi
-}
-
-# Dynamic font size in urxvt
-function fontsize {
-    printf '\33]50;%s%d\007' "xft:Dejavu Sans Mono:size=$1::antialias=false"
 }
 
 function sn {
