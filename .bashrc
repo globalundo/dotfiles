@@ -26,12 +26,12 @@ then
      # eval $(ssh-agent -s) 2>&1 &>/dev/null;
 
     # Close unused terminal windows after N seconds
-    if [ -z ${TMUX+x} ];
-    then
-        export TMOUT=1200
-    else
-        export TMOUT=''
-    fi
+    #if [ -z ${TMUX+x} ];
+    #then
+    #    export TMOUT=1200
+    #else
+    #    export TMOUT=''
+    #fi
 
 else
     # If tmux binary is present -> start or attach to tmux
@@ -59,8 +59,8 @@ shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s dirspell
 
-HISTFILESIZE=10000000
-HISTSIZE=10000000
+HISTFILESIZE=-1
+HISTSIZE=-1
 HISTCONTROL=ignoreboth
 HISTIGNORE='ls:l:la:bg:fg'
 # PROMPT_COMMAND='history -a'

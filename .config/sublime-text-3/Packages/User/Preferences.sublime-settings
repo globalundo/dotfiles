@@ -26,7 +26,7 @@
 	[
 		100
 	],
-	"save_on_focus_lost": false,
+	"save_on_focus_lost": true,
 	"scroll_past_end": true,
 	"show_encoding": true,
 	"show_panel_on_build": true,

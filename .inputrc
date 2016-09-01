@@ -2,6 +2,8 @@ $include /etc/inputrc
 "\e[A":history-search-backward
 "\e[B":history-search-forward
 set completion-ignore-case on
+set completion-map-case on
+#set editing-mode vi
 #set completion-prefix-display-length 2
 
 
@@ -19,3 +21,5 @@ set skip-completed-text on
 
 set page-completions off
 set completion-query-items 0
+set bell-style none
+set visible-stats on

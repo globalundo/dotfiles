@@ -1,17 +1,10 @@
+
 --[[
 
      Multicolor Awesome WM config 2.0
      github.com/copycat-killer
 
 --]]
-
-
--- function file_exists(name)
---    local f=io.open(name,"r")
---    if f~=nil then io.close(f) return true else return false end
--- end
-
-
 
 -- {{{ Required libraries
 local gears     = require("gears")
@@ -21,13 +14,10 @@ require("awful.autofocus")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
 local naughty   = require("naughty")
--- local drop      = require("scratchdrop")
 local lain      = require("lain")
---local treesome  = require("treesome")
--- require("lua-table-persistence/persistence")
 -- }}}
 
-beautiful.border_width = 8
+-- beautiful.border_width = 6
 
 naughty.config.presets.normal.opacity = 0.9
 naughty.config.presets.low.opacity = 0.9
@@ -73,17 +63,16 @@ do
 end
 -- }}}
 
--- {{{ Autostart applications
+--{{{ Autostart applications
 -- function run_once(cmd)
---   findme = cmd
---   firstspace = cmd:find(" ")
---   if firstspace then
---      findme = cmd:sub(0, firstspace-1)
---   end
---   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
--- end
-
--- run_once("wallchange")
+--  findme = cmd
+--  firstspace = cmd:find(" ")
+--  if firstspace then
+--     findme = cmd:sub(0, firstspace-1)
+--  end
+--  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+--end
+awful.util.spawn_with_shell("urxvt")
 -- run_once("xflux -l 58 -g 37")
 -- run_once("feh --bg-scale /usr/share/backgrounds/warty-final-ubuntu.png")
 -- run_once("setxkbmap -layout 'us,ru' -option 'grp:caps_toggle, grp:alt_space_toggle ,grp_led:caps, compose:ralt'")
@@ -139,6 +128,7 @@ local layouts = {
 --    awful.layout.suit.spiral.dwindle,
    -- awful.layout.suit.max,
     lain.layout.uselessfair,
+    awful.layout.suit.fair,
     -- lain.layout.termfair,
     -- lain.layout.centerwork,
     -- awful.layout.suit.spiral,
@@ -158,8 +148,8 @@ lain.layout.termfair.ncol = 1
 -- else
   tags = {
      -- names = { "web", "term", "more terms", "messaging", "X", "X", "X", "X", "X", "X", "X", "X" },
-    names = { "🌎", "", "", "", "⌨", "🎬", "", "", ""},
-     layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1]}
+    names = { "🌎", "", "", "", "⌨", "🎬", "", "" },
+     -- layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
   }
 
 
@@ -168,7 +158,7 @@ lain.layout.termfair.ncol = 1
      -- if s > 1 then
        -- tags[s] = awful.tag({"term",}, s, {layouts[3],})
      -- else
-    tags[s] = awful.tag(tags.names, s, tags.layout)
+    tags[s] = awful.tag(tags.names, s, layouts[1])
      -- end
   end
 -- end
@@ -252,7 +242,7 @@ mailwidget = lain.widgets.imap({
     end
 })
 ]]
-lain.util.useless_gaps_resize(20);
+-- lain.util.useless_gaps_resize(20);
 
 -- Keyboard layout widget
 kbdwidget = wibox.widget.textbox(" Eng ")
@@ -580,10 +570,18 @@ globalkeys = awful.util.table.join(
     --  dynamic tagging
     --awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag(layouts[3]) end),
     awful.key({ modkey, "Shift" }, "n", function () lain.util.add_tag(mypromptbox,layouts[1]) end),
-    awful.key({ modkey, "Shift" }, "r", function () lain.util.rename_tag(mypromptbox) end),
     awful.key({ modkey, "Shift" }, "Left", function () lain.util.move_tag(-1) end),  -- move to next tag
     awful.key({ modkey, "Shift" }, "Right", function () lain.util.move_tag(1) end), -- move to previous tag
     awful.key({ modkey, "Shift" }, "d", function () lain.util.remove_tag() end),
+
+
+
+    awful.key({ modkey, "Shift" }, "r",
+        function ()
+
+            lain.util.rename_tag(mypromptbox)
+        end),
+
 
     -- Default client focus
     awful.key({ altkey }, "k",
@@ -819,14 +817,14 @@ globalkeys = awful.util.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
-        -- awful.key({ modkey }, "#" .. i + 9,
-        --           function ()
-        --                 local screen = mouse.screen
-        --                 local tag = awful.tag.gettags(screen)[i]
-        --                 if tag then
-        --                    awful.tag.viewonly(tag)
-        --                 end
-        --           end),
+        awful.key({ modkey }, "#" .. i + 9,
+                  function ()
+                        local screen = mouse.screen
+                        local tag = awful.tag.gettags(screen)[i]
+                        if tag then
+                           awful.tag.viewonly(tag)
+                        end
+                  end),
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
@@ -834,15 +832,15 @@ for i = 1, 9 do
                       if tag then
                          awful.tag.viewtoggle(tag)
                       end
+                  end),
+        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+                  function ()
+                      local tag = awful.tag.gettags(client.focus.screen)[i]
+                      if client.focus and tag then
+                          awful.client.movetotag(tag)
+                          awful.tag.viewonly(tag)
+                     end
                   end)
-        -- ,
-        -- awful.key({ modkey, "Shift" }, "#" .. i + 9,
-        --           function ()
-        --               local tag = awful.tag.gettags(client.focus.screen)[i]
-        --               if client.focus and tag then
-        --                   awful.client.movetotag(tag)
-        --              end
-        --           end),
         -- awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
         --           function ()
         --               local tag = awful.tag.gettags(client.focus.screen)[i]
@@ -871,9 +869,9 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons,
-	             size_hints_honor = false,
+	                 size_hints_honor = false,
 	     	     -- opacity = 0.85,
-	   	     opaque = false} },
+	   	             opaque = false} },
 
 --    { rule = { class = "URxvt" },
 --          properties = { opacity = 0.80,
@@ -889,14 +887,14 @@ awful.rules.rules = {
 --    { rule_any = { class = { "Firefox", "Chromium" } },
 --          properties = { tag = tags[1][1]} },
 
-    { rule_any = { class = { "Skype", "DummyJabber" } },
-          properties = { tag = tags[1][4]} },
+    -- { rule_any = { class = { "Skype", "DummyJabber" } },
+    --       properties = { tag = tags[1][4]} },
 
-    { rule_any = { class = { "deadbeef", "cmplayer", "qbittorrent" } },
-          properties = { tag = tags[1][5]} },
+    -- { rule_any = { class = { "deadbeef", "cmplayer", "qbittorrent" } },
+          -- properties = { tag = tags[1][5]} },
 
-  { rule = { class = "pidgin" },
-          properties = { floating = false } },
+  -- { rule = { class = "pidgin" },
+  --         properties = { floating = false } },
 
     -- { rule = { class = "Iron" },
     --       properties = { tag = tags[1][1] } },
@@ -910,6 +908,11 @@ awful.rules.rules = {
     { rule = { class = "plugin-container" },
           properties = { floating = true,
 			 fullscreen = true}
+--			 tag = tags[1][1] }
+},
+    { rule = { class = "rofi" },
+          properties = { floating = false
+			 }
 --			 tag = tags[1][1] }
 },
 
@@ -1024,13 +1027,18 @@ end)
 -- No border for maximized clients
 client.connect_signal("focus",
     function(c)
-        if c.maximized_horizontal == true and c.maximized_vertical == true then
-            c.border_color = beautiful.border_normal
-        else
-            c.border_color = beautiful.border_focus
-        end
+        -- if c.maximized_horizontal == true and c.maximized_vertical == true then
+            -- c.border_color = beautiful.border_normal
+        -- else
+        c.border_color = beautiful.border_focus
+        -- c.border_width = "0"
+        -- end
     end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("unfocus", function(c)
+    c.border_color = beautiful.border_normal
+        -- c.border_width = "10"
+
+    end)
 -- }}}
 
 -- {{{ Arrange signal handler
@@ -1041,9 +1049,9 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
         if #clients > 0 then -- Fine grained borders and floaters control
             for _, c in pairs(clients) do -- Floaters always have borders
                 -- No borders with only one humanly visible client
-                if layout == "max" or c.maximized then
-                    c.border_width = 0
-                elseif awful.client.floating.get(c) or layout == "floating" then
+                -- if layout == "max" or c.maximized then
+                --     c.border_width = 0
+                if awful.client.floating.get(c) or layout == "floating" then
                     c.border_width = beautiful.border_width
                 elseif #clients == 1 then
                     -- clients[1].border_width = 0

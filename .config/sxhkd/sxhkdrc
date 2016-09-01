@@ -27,7 +27,7 @@ super + w
 
 super + m
     wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz; \
-    wmctrl -r :ACTIVE: -b toggle,above
+    wmctrl -r :ACTIVE: -b toggle,above;
 
 super + f
     wmctrl -r :ACTIVE: -b toggle,fullscreen
@@ -41,13 +41,13 @@ shift+super + Return
 super + o
     window_sticky_corner.sh 30
 
-#super + {1-9}
-#    wmctrl -s {0-8}
+# super + {1-9}
+#     wmctrl -s {0-8}
 
-super + shift + {1-9}
-    W={0-8}; \
-    wmctrl -r :ACTIVE: -t $W; \
-    wmctrl -s $W
+# super + shift + {1-9}
+#     W={0-8}; \
+#     wmctrl -r :ACTIVE: -t $W; \
+#     wmctrl -s $W
 
 super + control + s
     wmctrl -r :ACTIVE: -b toggle,sticky
