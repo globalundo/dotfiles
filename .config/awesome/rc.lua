@@ -16,6 +16,7 @@ local beautiful  = require("beautiful")
 local naughty    = require("naughty")
 local lain       = require("lain")
 local tyrannical = require("tyrannical")
+local capi       = {root=root,client=client,tag=tag,mouse=mouse}
 -- }}}
 
 
@@ -152,7 +153,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {screen_down, screen_up},
         max_clients = 2,
-        class = {"sublime_text"}
+        class = {"sublime_text", "subl3"}
     } ,
     {
         name        = "🌎",
@@ -160,7 +161,7 @@ tyrannical.tags = {
         exclusive   = false,
         screen      = {screen_down, screen_up},
         max_clients = 2,
-        class = {"chromium-browser"}
+        class = {"chromium-browser", "chromium"}
     }
 }
 
@@ -502,13 +503,16 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "h",      function () awful.tag.incncol( 1)          end),
     awful.key({ modkey,           }, "space",  function () awful.layout.inc(layouts,  1)  end),
     awful.key({ modkey, "Control" }, "r",      awful.util.restart),
-    awful.key({ modkey, "Shift" }, "n",
-        function ()
-            local tag = awful.tag.add(awful.tag.selected(mouse.screen).name,{onetimer=true,volatile=true,exclusive=true,screen=mouse.screen or 1,layout=tyrannical.settings.layout or tyrannical.settings.default_layout or awful.layout.suit.max})
-            awful.client.movetotag(tag)
-            awful.tag.viewonly(tag)
-            end)
+    awful.key({ modkey, "Shift" }, "n",        function ()
+        local c = capi.client.focus
+        local t = awful.tag.add(awful.tag.selected(mouse.screen).name,{screen= (capi.client.focus and capi.client.focus.screen or capi.mouse.screen) })
+        if c then
+            c:tags({t})
+            awful.tag.viewonly(t)
+        end
+    end)
 )
+
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
