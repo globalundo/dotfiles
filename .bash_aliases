@@ -27,7 +27,7 @@ dotfiles_send() {
     if [ ! -z "$1" ]; then
         rsync -va ~/.vimrc ~/.bashrc ~/.bash_aliases ~/.tmux.conf ~/.tmux.??.conf ~/.vim --exclude '.vim/bundle/YouCompleteMe' $1:
         rsync -va ~/.config/liquidprompt* $1:~/.config/
-        rsync -va ~/bin/tmux_*.sh ~/bin/liquidprompt  $1:~/bin/
+        rsync -va ~/bin/tmux_*.sh ~/liquidprompt/liquidprompt  $1:~/bin/
     fi
 }
 
@@ -69,6 +69,6 @@ man() {
 
 if [[ $- == *i* ]]; then
     function cd {
-        builtin cd "$@" && ll
+        builtin cd "$@" && ll -a
     }
 fi
