@@ -1,0 +1,9 @@
+[submodule ".config/awesome/tyrannical"]
+	path = .config/awesome/tyrannical
+	url = https://github.com/Elv13/tyrannical.git
+[submodule ".config/awesome/lain"]
+	path = .config/awesome/lain
+	url = https://github.com/copycat-killer/lain.git
+[submodule "liquidprompt"]
+	path = liquidprompt
+	url = https://github.com/nojhan/liquidprompt

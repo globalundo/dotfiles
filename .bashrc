@@ -88,7 +88,7 @@ export PULSE_LATENCY_MSEC=60
 [[ -f ~/.bash_custom ]] && . ~/.bash_custom
 
 # PS1 and stuff
-. ~/bin/liquidprompt
+. ~/liquidprompt/liquidprompt
 
 builtin true
 export PATH="$HOME/.rbenv/bin:$PATH"
