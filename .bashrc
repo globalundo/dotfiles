@@ -20,12 +20,12 @@ fi
 
 export VISUAL="$(type -p subl sublime_text subl3 | tail -n +1 | head -n 1) -w"
 export EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1)
-export GIT_EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1)
+export GIT_EDITOR=$EDITOR
 
 if [ -z "$SSH_CONNECTION" ];
 then
     # Start keychain ad set SSH_AGENT variable(s)
-    source <(keychain --confhost --eval --quick --quiet);
+    source <(~/keychain/keychain --confhost --eval --quick --quiet);
      # eval $(ssh-agent -s) 2>&1 &>/dev/null;
 
     # Close unused terminal windows after N seconds
