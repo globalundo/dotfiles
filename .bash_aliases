@@ -23,12 +23,16 @@ function whatthediff {
 }
 
 # Populate remote server with dotfiles
-dotfiles-sync() {
+function dotfiles-sync {
     if [ ! -z "$1" ]; then
         builtin cd > /dev/null
         rsync -vaz --progress -R --no-implied-dirs $(cat ~/.dotfiles-sync | xargs) .dotfiles-sync $1:
         builtin cd - > /dev/null
     fi
+}
+
+function dssh {
+    dotfiles-sync $@ && ssh $@
 }
 
 function sn {
@@ -43,7 +47,7 @@ function sn {
     esac
 }
 
-man() {
+function man {
     if [ "$TERM" = 'linux' ]; then
         env \
             LESS_TERMCAP_mb=$(printf "\e[34m") \
