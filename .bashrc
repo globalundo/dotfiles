@@ -15,8 +15,11 @@ if [[ $TERM = *-256color ]]; then
 fi
 
 # Default editor
-[ -z ${DISPLAY+x} ] && EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1) || EDITOR=$(type -p subl sublime_text subl3 vim vi nano | tail -n +1 | head -n 1)
-export EDITOR=$EDITOR
+#[ -z ${DISPLAY+x} ] && EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1) || EDITOR=$(type -p subl sublime_text subl3 vim vi nano | tail -n +1 | head -n 1)
+
+
+export VISUAL="$(type -p subl sublime_text subl3 | tail -n +1 | head -n 1) -w"
+export EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1)
 export GIT_EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1)
 
 if [ -z "$SSH_CONNECTION" ];
@@ -52,7 +55,7 @@ if [ ! -f $HISTFILE ]; then
     chmod 600 $HISTFILE
 fi
 shopt -s histappend
-shopt -s cmdhist # one command per line
+# shopt -s cmdhist # one command per line
 shopt -s autocd
 shopt -s cdspell
 shopt -s checkjobs
@@ -69,7 +72,7 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; h
 
 # CVS
 # export CVS_RSH=ssh
-# export CVSROOT=':ext:globalundo@localhost.localdomain:/var/cvs'
+# export CVSROOT=':ext:${LOGNAME}@$(hostname -f):/tmp/cvs'
 
 # If Skype doing bad thinds:
 export PULSE_LATENCY_MSEC=60
