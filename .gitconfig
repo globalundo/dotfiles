@@ -1,0 +1,25 @@
+[include]
+    path = .gitconfig_local
+[alias]
+    a    = add
+    aa   = add --all :/
+    b    = branch
+    c    = commit -v
+    ca   = commit -v --amend
+    co   = checkout
+    cp   = cherry-pick
+    cva  = commit -va
+    cvaa = commit -va --amend
+    d    = diff
+    dc   = diff --cached
+    l    = log
+    lp   = log -p
+    line = log --oneline --decorate --graph
+    p    = pull
+    r    = rebase
+    ri   = "!f() { git rebase -i HEAD~$1; }; f"
+    s    = status
+[push]
+    default = simple
+[credential]
+    helper = cache --timeout=65535
