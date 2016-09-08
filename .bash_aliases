@@ -23,11 +23,11 @@ function whatthediff {
 }
 
 # Populate remote server with dotfiles
-dotfiles_send() {
+dotfiles-sync() {
     if [ ! -z "$1" ]; then
-        rsync -va ~/.vimrc ~/.bashrc ~/.bash_aliases ~/.tmux.conf ~/.tmux.??.conf ~/.vim --exclude '.vim/bundle/YouCompleteMe' $1:
-        rsync -va ~/.config/liquidprompt* $1:~/.config/
-        rsync -va ~/bin/tmux_*.sh ~/liquidprompt/liquidprompt  $1:~/bin/
+        builtin cd > /dev/null
+        rsync -vaz --progress -R --no-implied-dirs $(cat ~/.dotfiles-sync | xargs) .dotfiles-sync $1:
+        builtin cd - > /dev/null
     fi
 }
 
@@ -67,8 +67,6 @@ man() {
     fi
 }
 
-if [[ $- == *i* ]]; then
-    function cd {
-        builtin cd "$@" && ll -a
-    }
-fi
+function cd {
+    builtin cd "$@" && ll -a
+}
