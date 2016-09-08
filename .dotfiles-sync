@@ -9,3 +9,4 @@
 .vimrc
 bin/tmux_*.sh
 liquidprompt/liquidprompt
+.plsqlrc
