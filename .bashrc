@@ -25,8 +25,14 @@ export GIT_EDITOR=$EDITOR
 if [ -z "$SSH_CONNECTION" ];
 then
     # Start keychain ad set SSH_AGENT variable(s)
-    source <(~/keychain/keychain --confhost --eval --quick --quiet);
-     # eval $(ssh-agent -s) 2>&1 &>/dev/null;
+
+    # if [ ! -S ~/.ssh/ssh-agent.sock ]; then
+    ssh-agent -a ~/.ssh/ssh-agent.sock &>/dev/null;
+    # fi
+    export SSH_AUTH_SOCK=~/.ssh/ssh-agent.sock
+
+    # source <(keychain --confhost --eval );
+     # eval $(ssh-agent -s -a ~/.ssh/ssh-agent.sock) 2>&1 &>/dev/null;
 
     # Close unused terminal windows after N seconds
     #if [ -z ${TMUX+x} ];

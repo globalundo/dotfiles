@@ -15,7 +15,6 @@ local wibox      = require("wibox")
 local beautiful  = require("beautiful")
 local naughty    = require("naughty")
 local lain       = require("lain")
-local tyrannical = require("tyrannical")
 local capi       = {root=root,client=client,tag=tag,mouse=mouse}
 -- }}}
 
@@ -105,91 +104,16 @@ local layouts = {
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol = 1
 
--- {{{ Tags
--- storage_tags = '.config/awesome/tags.lua'
--- if file_exists(storage_tags)
--- then
---     tags = persistence.load(storage_tags)
--- else
-  -- tags = {
-  --    -- names = { "web", "term", "more terms", "messaging", "X", "X", "X", "X", "X", "X", "X", "X" },
-  --   names = { "🌎", "", "", "", "⌨", "🎬", "", "" },
-  --    -- layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
-  -- }
+  tags = {
+     -- names = { "web", "term", "more terms", "messaging", "X", "X", "X", "X", "X", "X", "X", "X" },
+    names = { "", "", "", "⌨", "🎬", "", "" },
+     -- layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+  }
 
-tyrannical.settings.block_children_focus_stealing = true --Block popups ()
-tyrannical.settings.group_children = true --Force popups/dialogs to have the same tags as the parent client
-tyrannical.settings.default_layout = lain.layout.uselessfair
+for s = 1, screen.count() do
+    tags[s] = awful.tag(tags.names, s, layouts[1])
+end
 
-tyrannical.tags = {
-    {
-        name        = "",                 -- Call the tag "Term"
-        init        = true,                   -- Load the tag on startup
-        exclusive   = false,                   -- Refuse any other type of clients (by classes)
-        screen      = {screen_down, screen_up},                  -- Create this tag on screen 1 and screen 2
-        max_clients = 4,
-        class       = { --Accept the following classes, refuse everything else (because of "exclusive=true")
-            "xterm" , "urxvt" , "aterm","URxvt","XTerm","konsole","terminator","gnome-terminal"
-        }
-    } ,
-    {
-        name        = "",
-        init        = true,
-        exclusive   = false,
-        max_clients = 4,
-        screen      = screen.count()>2 and screen_left or screen_down,
-        class = {"nagstamon"}
-    } ,
-    {
-        name        = "",
-        init        = true,
-        exclusive   = false,
-        screen      = screen_down,
-        class = {"skype", "pidgin"}
-    } ,
-    {
-        name        = "⌨",
-        init        = false,
-        exclusive   = false,
-        screen      = {screen_down, screen_up},
-        max_clients = 2,
-        class = {"sublime_text", "subl3"}
-    } ,
-    {
-        name        = "🌎",
-        init        = false,
-        exclusive   = false,
-        screen      = {screen_down, screen_up},
-        max_clients = 2,
-        class = {"chromium-browser", "chromium"}
-    }
-}
-
--- Ignore the tag "exclusive" property for the following clients (matched by classes)
--- tyrannical.properties.intrusive = {
---     "ksnapshot"     , "pinentry"       , "gtksu"     , "kcalc"        , "xcalc"               ,
---     "feh"           , "Gradient editor", "About KDE" , "Paste Special", "Background color"    ,
---     "kcolorchooser" , "plasmoidviewer" , "Xephyr"    , "kruler"       , "plasmaengineexplorer",
--- }
-
--- Ignore the tiled layout for the matching clients
-tyrannical.properties.floating = {
-    "MPlayer"      , "pinentry"        , "ksnapshot"  , "pinentry"     , "gtksu"          ,
-    "xine"         , "feh"             , "kmix"       , "kcalc"        , "xcalc"          ,
-    "yakuake"      , "Select Color$"   , "kruler"     , "kcolorchooser", "Paste Special"  ,
-    "New Form"     , "Insert Picture"  , "kcharselect", "mythfrontend" , "plasmoidviewer",
-    "pavucontrol"
-}
-
--- Make the matching clients (by classes) on top of the default layout
-tyrannical.properties.ontop = {
-    "Xephyr" , "pavucontrol", "keepass2", "KeePass"
-}
-
--- Force the matching clients (by classes) to be centered on the screen on init
-tyrannical.properties.centered = {
-    "pavucontrol", "keepass2", "KeePass"
-}
 
 -- {{{ Wibox
 markup = lain.util.markup
