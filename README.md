@@ -2,13 +2,11 @@
 
 ### Files:
 - .tmux.conf
-- .tmux.20.conf
-- .tmux.21.conf
-- bin/tmux_puppet.sh
-- bin/tmux_domain.sh
+- .tmux.conf.d
 
 ### Install
 Copy files to your home folder:
+```cp --parents -R .tmux.conf .tmux.conf.d ~```
 ```find . -type f -name '*tmux*' | xargs -I % cp --parents % ~```
 
 ### Hotkeys

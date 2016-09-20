@@ -1,12 +1,11 @@
 .bash_aliases
 .bashrc
 .config/liquidprompt*
-.tmux.??.conf
 .tmux.conf
+.tmux.conf.d
 .vim/bundle/Vundle.vim
 .vim/colors
-.vimlocal
 .vimrc
-bin/tmux_*.sh
 liquidprompt/liquidprompt
 .psqlrc
+.gitconfig

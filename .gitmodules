@@ -1,6 +1,3 @@
-[submodule ".config/awesome/tyrannical"]
-	path = .config/awesome/tyrannical
-	url = https://github.com/Elv13/tyrannical.git
 [submodule ".config/awesome/lain"]
 	path = .config/awesome/lain
 	url = https://github.com/copycat-killer/lain.git
@@ -10,6 +7,3 @@
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
-[submodule "keychain"]
-	path = keychain
-	url = https://github.com/funtoo/keychain.git

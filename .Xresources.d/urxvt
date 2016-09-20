@@ -29,7 +29,7 @@ URxvt.iso14755: false
 URxvt.cutchars:         BACKSLASH '"'&()*,:;<=>#?@[]^{|}
 URxvt.tripleclickwords: true
 URxvt.lineSpace:        0
-URxvt.letterSpace:      -1
+URxvt.letterSpace:      -2
 
 ! Scrollbar
 URxvt.scrollStyle: rxvt

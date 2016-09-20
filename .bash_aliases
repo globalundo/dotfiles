@@ -26,7 +26,7 @@ function whatthediff {
 function dotfiles-sync {
     if [ ! -z "$1" ]; then
         builtin cd > /dev/null
-        rsync -vaz --progress -R --no-implied-dirs $(cat .dotfiles-sync | xargs) .dotfiles-sync $1:
+        rsync -vaz --progress -R $(sed 's/^/--exclude /g' .dotfiles-exclude | tr '\n' ' ') --no-implied-dirs $(cat .dotfiles-sync | tr '\n' ' ') .dotfiles-sync $1:
         builtin cd - > /dev/null
     fi
 }

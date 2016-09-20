@@ -3,7 +3,6 @@
 tmux_domain=''
 MAX_LENGTH=32
 
-
 d=$(hostname -d 2>/dev/null)
 if ! [[ -z $d ]]; then
     if [ ${#d} -lt $MAX_LENGTH ]; then
