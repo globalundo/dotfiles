@@ -33,7 +33,9 @@ filetype plugin indent on
 " Bundle 'Lokaltog/vim-easymotion'
 Plugin 'bling/vim-airline'
 " Plugin 'puppetlabs/puppet-syntax-vim'
-if filereadable(expand('~/.vimlocal')) | source ~/.vimlocal | endif
+if empty($SSH_CONNECTION)
+  if filereadable(expand('~/.vimlocal')) | source ~/.vimlocal | endif
+endif
 syntax on
 " background=dark " light | dark "
 " colorscheme solarized
