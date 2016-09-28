@@ -6,9 +6,11 @@
 	"installed_packages":
 	[
 		"Alignment",
+		"AlignTab",
 		"All Autocomplete",
 		"ApplySyntax",
 		"BracketHighlighter",
+		"Color Highlighter",
 		"Crontab Syntax",
 		"Dotfiles Syntax Highlighting",
 		"EncodingHelper",
@@ -17,9 +19,11 @@
 		"GitGutter",
 		"Hide Menu",
 		"InsertDate",
+		"MarkdownHighlighting",
 		"Material Theme",
 		"Package Control",
 		"PostgreSQL Syntax Highlighting",
+		"Pretty JSON",
 		"Puppet",
 		"Revert All Files",
 		"SideBarEnhancements",
@@ -30,7 +34,7 @@
 		"SublimeLinter-contrib-puppet",
 		"SublimeLinter-contrib-puppet-lint",
 		"SublimeLinter-pep8",
-		"TidyTabs",
+		"Terraform",
 		"TrailingSpaces"
 	]
 }

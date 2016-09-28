@@ -13,7 +13,7 @@
 		{
 			"pep8":
 			{
-				"@disable": false,
+				"@disable": true,
 				"args":
 				[
 				],
