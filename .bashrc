@@ -18,18 +18,19 @@ fi
 #[ -z ${DISPLAY+x} ] && EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1) || EDITOR=$(type -p subl sublime_text subl3 vim vi nano | tail -n +1 | head -n 1)
 
 
-export VISUAL="$(type -p subl sublime_text subl3 | tail -n +1 | head -n 1) -w"
+#export VISUAL="$(type -p subl sublime_text subl3 | tail -n +1 | head -n 1) -w"
 export EDITOR=$(type -p vim vi nano | tail -n +1 | head -n 1)
 export GIT_EDITOR=$EDITOR
+export VISUAL=$EDITOR
 
 if [ -z "$SSH_CONNECTION" ];
 then
     # Start keychain ad set SSH_AGENT variable(s)
 
     # if [ ! -S ~/.ssh/ssh-agent.sock ]; then
-    ssh-agent -a ~/.ssh/ssh-agent.sock &>/dev/null;
+    export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
+    ssh-agent -a $SSH_AUTH_SOCK &>/dev/null;
     # fi
-    export SSH_AUTH_SOCK=~/.ssh/ssh-agent.sock
 
     # source <(keychain --confhost --eval );
      # eval $(ssh-agent -s -a ~/.ssh/ssh-agent.sock) 2>&1 &>/dev/null;
