@@ -15,4 +15,4 @@ if ! [[ -z $d ]]; then
     colour=colour$((16#$(echo $d | md5sum | cut -b-2)))
     tmux_domain="#[fg=colour15,bg=${colour},bold] ${domain}";
 fi
-echo "$tmux_domain "
+echo "$tmux_domain"
