@@ -69,8 +69,8 @@ shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s dirspell
 
-HISTFILESIZE=-1
-HISTSIZE=-1
+HISTFILESIZE=16777216
+HISTSIZE=16777216
 HISTCONTROL=ignoreboth
 HISTIGNORE='ls:l:la:bg:fg'
 # PROMPT_COMMAND='history -a'
