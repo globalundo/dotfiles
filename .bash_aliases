@@ -18,6 +18,12 @@ alias r='ranger'
 
 alias b='xbacklight -set '
 
+alias bman='man --html=x-www-browser'
+
+function rsync_link {
+    echo $(hostname -f):$(pwd)/$1
+}
+
 function whatthediff {
     fab jenkins.get_diffs:$1; grep -E '^[<>]' /tmp/jenkins-diffs/* | python -c "from sys import stdin; print '\n'.join([ ''.join( _.split(':')[1:]).strip() for _ in stdin.readlines() ])" | sort -n | uniq
 }
@@ -103,4 +109,26 @@ function party {
             sleep 0.01
         done
     fi
+}
+
+function git_remove_biggest_files {
+    # fetch the list of sha of git blobs which are not present in the HEAD patchset (top 100)
+    for big_object_sha in $(git verify-pack -v .git/objects/pack/pack-*.idx | egrep "^\w+ blob\W+[0-9]+ [0-9]+ [0-9]+$" | sort -k 3 -n -r | head -n 100 | awk '{print $1}');
+    do
+        # translate blob sha into filepath
+        for big_file in $(
+            git log "$@" --pretty=format:'%T %h %s' \
+            | while read tree commit subject ; do
+                git ls-tree -r $tree | grep "$big_object_sha" | awk '{print $NF}';
+            done | sort -n | uniq
+            );
+        do
+            # remove file from git history
+            git filter-branch --index-filter "git rm --cached --ignore-unmatch -- --all $big_file" -f -- --all $(git rev-list --max-parents=0 HEAD)..HEAD;
+        done
+    done
+    # cleanup reflog
+    git reflog expire --expire=now --all
+    git gc --prune=now --aggressive
+    echo 'You might want to run "git push --all -f", but beware of dragons!'
 }
