@@ -18,7 +18,9 @@ URxvt.borderLess:     false
 
 ! Fonts
 
-URxvt.font:       xft:Dejavu Sans Mono:size=12:antialias=false
+URxvt.font:       xft:Dejavu Sans Mono:size=11:antialias=false
+! uRxvt.font: -misc-tamsyn-medium-r-normal--14-101-100-100-c-70-iso8859-1
+! URxvt.boldFont: -misc-tamsyn-bold-r-normal--14-101-100-100-c-70-iso8859-1
 ! URxvt.font:       -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1
 URxvt.allow_bold: false
 
