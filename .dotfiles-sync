@@ -4,6 +4,7 @@
 .tmux.conf
 .tmux.conf.d
 .vim/bundle/Vundle.vim
+.vim/bundle/vim-airline
 .vim/colors
 .vimrc
 liquidprompt/liquidprompt
