@@ -13,6 +13,8 @@ alias takeover='tmux detach -a'
 alias i='ipython'
 alias ipython='ipython --no-confirm-exit --pprint --no-banner'
 alias p='puppet'
+alias pat='puppet agent --test'
+alias patn='puppet agent --test --noop'
 
 alias r='ranger'
 
@@ -23,7 +25,7 @@ alias idk='echo "¯\_(ツ)_/¯"'
 alias bman='man --html=x-www-browser'
 
 function rsync_link {
-    echo $(hostname -f):$(pwd)/$1
+        echo $(hostname -f):$(realpath $1)
 }
 
 function whatthediff {
@@ -134,3 +136,5 @@ function git_remove_biggest_files {
     git gc --prune=now --aggressive
     echo 'You might want to run "git push --all -f", but beware of dragons!'
 }
+
+
