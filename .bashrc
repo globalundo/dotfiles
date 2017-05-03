@@ -72,7 +72,7 @@ shopt -s dirspell
 HISTFILESIZE=16777216
 HISTSIZE=16777216
 HISTCONTROL=ignoreboth
-HISTIGNORE='ls:l:la:bg:fg'
+HISTIGNORE='ls:l:la:bg:fg:g --reset:git --reset:'
 # PROMPT_COMMAND='history -a'
 # PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
@@ -104,3 +104,9 @@ builtin true
 export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+export FZF_COMPLETION_TRIGGER='``'
+export FZF_COMPLETION_OPTS='--reverse -m --color=dark'
+# export FZF_TMUX_HEIGHT='60%'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
