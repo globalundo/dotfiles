@@ -47,6 +47,6 @@ LP_PS1="${LP_PS1}${LP_RUNTIME}${LP_ERR}${LP_MARK_PREFIX}${LP_COLOR_MARK}${LP_MAR
 LP_TITLE="$(_lp_title "$LP_PS1")"
 
 # Insert it in the prompt
-LP_PS1="${LP_TITLE}${LP_PS1}"
+LP_PS1="${LP_PS1}"
 
 # vim: set et sts=4 sw=4 tw=120 ft=sh:

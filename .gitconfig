@@ -29,3 +29,5 @@
     default = simple
 [credential]
     helper = cache --timeout=65535
+[color]
+	ui = true

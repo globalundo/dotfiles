@@ -24,9 +24,9 @@ xcolor2rgb(){
 }
 
 luminace(){
-    max=$(echo "$1" "$2" "$3" | tr ' ' '\n' | sort -rn | head -n 1)
-    min=$(echo "$1" "$2" "$3" | tr ' ' '\n' | sort -rn | tail -n 1)
-    echo $(((max+min)/255))
+    max=$(echo $1 $2 $3 | tr ' ' '\n' | sort -rn | head -n 1)
+    min=$(echo $1 $2 $3 | tr ' ' '\n' | sort -rn | tail -n 1)
+    echo $((($max+$min)/255))
 }
 
 tmux_domain=''
@@ -42,12 +42,12 @@ if ! [[ -z $d ]]; then
         domain=${d:$NF-32:32}
     fi
 
-    color=$((16#$(echo "$d" | md5sum | cut -b-2)))
+    color=$((16#$(echo $d | md5sum | cut -b-2)))
 
     xbgcolor=colour${color}
     rgb=$(xcolor2rgb $color)
-    lum=$(luminace "$rgb")
-    [ "$lum" -eq 1 ] && xfgcolor=colour16 || xfgcolor=colour15
+    lum=$(luminace $rgb)
+    [ $lum -eq 1 ] && xfgcolor=colour16 || xfgcolor=colour15
 
     tmux_domain="#[fg=${xfgcolor},bg=${xbgcolor},bold] ${domain} ";
 fi

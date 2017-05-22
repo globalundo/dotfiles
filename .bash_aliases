@@ -21,7 +21,8 @@ alias r='ranger'
 alias b='xbacklight -set '
 
 alias idk='echo "¯\_(ツ)_/¯"'
-
+alias shrug='echo "¯\_(ツ)_/¯"'
+alias fp='echo "(ლ‸－)"'
 alias bman='man --html=x-www-browser'
 
 function rsync_link {

@@ -10,6 +10,9 @@ set hlsearch            " highlight matches
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
+" in case you forgot to type "sudo"
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
@@ -68,4 +71,5 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-
+" C-x X-e syntax hightlight
+au BufRead,BufNewFile bash-fc* setfiletype sh
