@@ -1,0 +1,10 @@
+#!/bin/bash
+URL='https://codeload.github.com/globalundo/dotfiles/tar.gz/master'
+if [ $EUID -eq 0 ]; then
+    echo "You are root! I won't copy dotfiles for you"
+    exit 1;
+else
+    curl -s $URL | tar -zvxf - --backup=numbered --strip-components=1 -C ~
+    curl -sI $URL | grep ETag | grep -Eo '[a-z0-9]{40}' > ~/.dotfiles-etag
+fi
+

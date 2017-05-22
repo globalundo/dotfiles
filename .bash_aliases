@@ -37,9 +37,14 @@ function whatthediff {
 function dotfiles-sync {
     if [ ! -z "$1" ]; then
         builtin cd > /dev/null
-        rsync -vaz --progress -R $(sed 's/^/--exclude /g' .dotfiles-exclude | tr '\n' ' ') --no-implied-dirs $(cat .dotfiles-sync | tr '\n' ' ') .dotfiles-sync $1:
+        rsync -az -R $(sed 's/^/--exclude /g' .dotfiles-exclude | tr '\n' ' ') --no-implied-dirs $(cat .dotfiles-sync | tr '\n' ' ') .dotfiles-sync $1:
         builtin cd - > /dev/null
     fi
+}
+
+function ssh {
+    #let's abuse LC_PAPER
+    LC_PAPER=$(cat ~/.dotfiles-etag 2>/dev/null || echo "") /usr/bin/ssh $@
 }
 
 function dssh {

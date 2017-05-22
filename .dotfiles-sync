@@ -10,3 +10,4 @@
 liquidprompt/liquidprompt
 .psqlrc
 .gitconfig
+.dotfiles-etag
