@@ -5,7 +5,8 @@ set completion-ignore-case on
 set completion-map-case on
 #set editing-mode vi
 #set completion-prefix-display-length 2
-
+"\eB":shell-backward-word
+"\eF":shell-forward-word
 
 set echo-control-characters off
 

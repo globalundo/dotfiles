@@ -4,7 +4,8 @@ run_once() {
     pgrep -u $USER -x $1 >/dev/null || $@ &
 }
 
-run_once compton
+#TODO: move option to conf file
+run_once compton --shadow-exclude '!focused'
 
 # http://linuxappfinder.com/package/unclutter
 run_once unclutter
@@ -17,6 +18,6 @@ run_once nm-applet
 run_once bluetooth-applet
 run_once easystroke
 run_once pcmanfm -d
-run_once nagstamon ~/bin/nagstamon/
+run_once nagstamon
 setxkbmap -layout 'us,ru' -option 'grp:alt_space_toggle,caps:none,compose:ralft:both_capslockt,ctrl:nocaps'
 xmodmap -e 'keycode 0x42 = F10'
