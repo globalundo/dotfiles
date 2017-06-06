@@ -31,3 +31,4 @@ Copy files to your home folder:
 # [Compton](https://github.com/chjj/compton)
 # [xbindkeys](http://git.savannah.gnu.org/cgit/xbindkeys.git/)
 # [rofi](https://github.com/DaveDavenport/rofi)
+
