@@ -42,14 +42,18 @@ function dotfiles-sync {
     fi
 }
 
-function ssh {
+function lcpaperssh {
     #let's abuse LC_PAPER
     LC_PAPER=$(cat ~/.dotfiles-etag 2>/dev/null || echo "") /usr/bin/ssh $@
 }
 
-function dssh {
-    dotfiles-sync $@ && ssh $@
-}
+if [ -z "$SSH_CONNECTION" ];
+then
+    function ssh {
+        dotfiles-sync $@ >/dev/null 2>&1; lcpaperssh $@
+    }
+fi
+
 
 function sn {
     case "$1" in
