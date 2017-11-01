@@ -1,0 +1,6 @@
+#!/bin/bash
+
+BAT0=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0) 
+
+echo "$BAT0" | grep -qE 'state:\s+discharging' && echo "$BAT0" | grep 'time to empty:' | awk -F '  ' '{print $NF}' || echo ""
+
