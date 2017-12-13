@@ -14,7 +14,7 @@ alias i='ipython'
 alias ipython='ipython --no-confirm-exit --pprint --no-banner'
 alias p='puppet'
 alias pat='puppet agent --test'
-alias patn='puppet agent --test --noop'
+#alias patn='puppet agent --test --noop'
 
 alias r='ranger'
 
@@ -26,11 +26,11 @@ alias fp='echo "(ლ‸－)"'
 alias bman='man --html=x-www-browser'
 
 function rsync_link {
-        echo $(hostname -f):$(realpath $1)
+        echo $(hostname -f):$(readlink -m $1)
 }
 
 function whatthediff {
-    fab jenkins.get_diffs:$1; grep -E '^[<>]' /tmp/jenkins-diffs/* | python -c "from sys import stdin; print '\n'.join([ ''.join( _.split(':')[1:]).strip() for _ in stdin.readlines() ])" | sort -n | uniq
+    grep -E '^[<>]' /tmp/jenkins-diffs/* | python -c "from sys import stdin; print '\n'.join([ ''.join( _.split(':')[1:]).strip() for _ in stdin.readlines() ])" | sort -n | uniq
 }
 
 # Populate remote server with dotfiles
@@ -147,4 +147,14 @@ function git_remove_biggest_files {
     echo 'You might want to run "git push --all -f", but beware of dragons!'
 }
 
+function ptmux {
+    tmux new "parallel_ssh"
+}
 
+function patn {
+    if [ ! -z "$1" ]; then
+        puppet agent --test --noop --environment "$1"
+    else
+        puppet agent --test --noop        
+    fi
+}
