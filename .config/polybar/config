@@ -18,10 +18,11 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
+[bar/i3]
 ;monitor = ${env:MONITOR:HDMI-1}
+dpi = 220
 width = 100%
-height = 27
+height = 40
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 6.0
@@ -48,12 +49,13 @@ font-1 = DejaVu:fontformat=truetype:size=8:antialias=false;0
 
 modules-left = i3
 modules-center = xwindow
-modules-right = filesystem backlight-acpi xkeyboard memory cpu wlan eth volume battery temperature date powermenu
+modules-right = filesystem backlight-acpi xkeyboard memory cpu wlan eth volume battery battery-left temperature date powermenu
 
 tray-position = right
 tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
+tray-maxsize = 36
+tray-transparent = false
+tray-background = #222
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -168,7 +170,7 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = %{A4:echo brightness up:}%{A5:echo brightness down:}<label> <bar>%{A}%{A}
+format = %{A4:brightnessctl s -- +2%:}%{A5:brightnessctl s -- -2%:}<label> <bar>%{A}%{A}
 label = 
 
 bar-width = 10
@@ -205,7 +207,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlan0
+interface = wlp58s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -218,11 +220,11 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = W
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-3 = 
+;ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -366,6 +368,12 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/battery-left]
+type = custom/script
+
+exec = /usr/local/bin/battery_left
+interval = 60
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -374,7 +382,7 @@ screenchange-reload = true
 ;compositing-border = over
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+;margin-top = 250
+;margin-bottom = 125
 
 ; vim:ft=dosini
